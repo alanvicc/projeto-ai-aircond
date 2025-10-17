@@ -1,75 +1,222 @@
-# 📊 Plataforma de Análise de Dados para Empresa de Climatização
+# Dashboard Empresa de Ar-Condicionado
 
-Este projeto consiste no desenvolvimento de uma **plataforma modular de análise de dados** para uma empresa de serviços de climatização, utilizando dados simulados armazenados em um banco SQLite. A solução integra extração, análise estatística e geração de insights interpretativos por meio de um modelo de linguagem (LLM), preparando o terreno para a criação de dashboards interativos.
-
----
-
-## 🧩 Funcionalidades
-
-- **📂 Estruturação e Leitura de Dados**: Conexão com banco SQLite e carregamento dos dados em DataFrames do Pandas.
-- **📈 Análise Intermediária**: Cálculo de métricas financeiras e operacionais (receita, despesa, lucro, ticket médio, frequência de manutenções, etc.).
-- **🤖 Geração de Insights com LLM**: Uso do modelo Llama3 (via Ollama) para transformar resumos estatísticos em relatórios interpretativos.
-- **🧱 Arquitetura Modular**: Facilita a integração com futuras visualizações (Streamlit, Plotly, Flask) e adição de novas fontes de dados.
+Este projeto é um **dashboard interativo** para análise financeira e operacional de uma empresa de climatização, desenvolvido em **Python** com **Streamlit** e integração com **LLM** para geração de insights automáticos.
 
 ---
 
-## 🎯 Alinhamento com o Tema do Projeto
+## 📋 Pré-requisitos
 
-O projeto se alinha ao tema:  
-*"Desenvolver análise de dados em escala utilizando dados existentes ou capturados por IoT e aprendizagem de máquina, preparando uma interface para visualização dos resultados."*
-
-- **📊 Análise de dados em escala**: Arquitetura preparada para grandes volumes de dados.
-- **🤖 Uso de IA/ML**: LLM para interpretação estratégica dos dados.
-- **🖥️ Visualização**: Estrutura modular permite fácil exportação para dashboards.
+* Python 3.8 ou superior
+* Git
+* 4GB de RAM disponível (mínimo recomendado)
 
 ---
 
-## ❓ Exemplos de Perguntas Suportadas
+## 🛠️ Instalação
 
-### 💰 Financeiro
-- Qual foi a tendência de receita e despesa nos últimos meses?
-- O lucro líquido atual é sustentável?
-- Se as despesas crescerem 10% no próximo mês, qual seria o impacto no lucro?
+### Windows
 
-### 🔧 Operacional
-- Quais clientes têm maior número de manutenções?
-- A frequência média de manutenção está dentro do esperado para o setor?
+1. **Instale o Python**
 
-### ⚠️ Riscos
-- Há sinais de risco de inadimplência ou queda na base de clientes?
-- Quais pontos de atenção devo monitorar?
+   * Acesse [python.org](https://www.python.org/)
+   * Baixe a versão mais recente do Python
+   * Durante a instalação, **marque a opção "Add Python to PATH"**
 
-### 🚀 Estratégia
-- Como aumentar a receita com a base atual?
-- Vale mais a pena reduzir custos ou investir em expansão?
+2. **Instale o Git**
 
-### 📅 Projeções
-- Qual a previsão de receita e lucro para os próximos 3 meses?
-- Se eu aumentar os preços em 5%, o que pode acontecer?
+   * Acesse [git-scm.com](https://git-scm.com/)
+   * Baixe e instale o Git for Windows
+   * Use as configurações padrão durante a instalação
 
----
+3. **Clone o repositório**
 
-## 🛠️ Tecnologias Utilizadas
+```cmd
+git clone https://github.com/seu-usuario/dashboard-ar-condicionado.git
+cd dashboard-ar-condicionado
+```
 
-- **Python**
-- **Pandas** - Análise e manipulação de dados
-- **SQLite** - Banco de dados
-- **Ollama + Llama3** - Modelo de linguagem para insights
-- *(Futuro)* **Streamlit / Plotly / Flask** - Visualização
+4. **Crie um ambiente virtual (recomendado)**
 
----
+```cmd
+python -m venv venv
+venv\Scripts\activate
+```
 
-## ⚙️ Instalação e Uso
+5. **Instale as dependências**
+
+```cmd
+pip install -r requirements.txt
+```
+
+### Linux (Ubuntu/Debian)
+
+1. **Atualize o sistema e instale dependências**
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/projeto-climatizacao.git
-cd projeto-climatizacao
+sudo apt update
+sudo apt install python3 python3-pip python3-venv git
+```
 
-# Instale as dependências
-pip install pandas ollama
+2. **Clone o repositório**
 
-# Execute a análise completa
-python leitura_db.py
-python analise.py
-python llm_insights.py
+```bash
+git clone https://github.com/seu-usuario/dashboard-ar-condicionado.git
+cd dashboard-ar-condicionado
+```
+
+3. **Crie um ambiente virtual**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+4. **Instale as dependências**
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 📦 Dependências
+
+Crie um arquivo `requirements.txt` com o seguinte conteúdo:
+
+```
+streamlit==1.28.0
+pandas==2.1.0
+ollama==0.1.7
+sqlite3
+```
+
+---
+
+## 🚀 Configuração do Banco de Dados
+
+1. **Crie a estrutura de diretórios**
+
+```bash
+mkdir -p db
+```
+
+2. **Coloque seu arquivo SQLite em:**
+
+```
+db/empresa_arcondicionado.sqlite
+```
+
+> ⚠️ Nota: Certifique-se de que o banco de dados possui as tabelas:
+>
+> * `clientes`
+> * `financeiro`
+> * `manutencoes`
+
+---
+
+## 🤖 Configuração do Ollama (para Insights com IA)
+
+### Instalação do Ollama
+
+* **Windows:**
+  Baixe do site [ollama.ai](https://ollama.ai/) e execute o instalador.
+  O Ollama será instalado como serviço.
+
+* **Linux:**
+
+```bash
+curl -fsSL https://ollama.ai/install.sh | sh
+```
+
+### Download do Modelo LLM
+
+```bash
+ollama pull llama3
+```
+
+---
+
+## 🎯 Executando o Projeto
+
+### Opção 1: Dashboard Web (Streamlit)
+
+```bash
+streamlit run dashboard.py
+```
+
+O dashboard estará disponível em: [http://localhost:8501](http://localhost:8501)
+
+### Opção 2: Versão Console
+
+```bash
+python main.py
+```
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+dashboard-ar-condicionado/
+├── dashboard.py          # Aplicação principal Streamlit
+├── main.py               # Versão console
+├── scripts/
+│   ├── leitura_db.py     # Leitura do banco de dados
+│   ├── analise.py        # Análises financeiras e operacionais
+│   └── llm_insights.py   # Geração de insights com IA
+├── db/
+│   └── empresa_arcondicionado.sqlite  # Banco de dados
+├── requirements.txt      # Dependências do projeto
+└── README.md             # Este arquivo
+```
+
+---
+
+## 🐛 Solução de Problemas
+
+**Erro de Módulo Não Encontrado**
+
+```bash
+# No Linux, use python3 explicitamente
+python3 -m streamlit run dashboard.py
+```
+
+**Ollama Não Encontrado**
+
+* Certifique-se de que o Ollama está rodando como serviço
+* **Windows:** Verifique nos serviços do sistema
+* **Linux:** `sudo systemctl status ollama`
+
+**Problemas com o Banco de Dados**
+
+* Verifique se o arquivo do banco existe no caminho correto
+* Confirme que as tabelas necessárias estão presentes
+
+---
+
+## 📊 Funcionalidades
+
+* ✅ Dashboard financeiro com métricas principais
+* ✅ Gráficos de receita vs despesa
+* ✅ Análise operacional de clientes e manutenções
+* ✅ Insights automáticos com IA (LLM)
+* ✅ Interface web responsiva
+* ✅ Versão console para uso em terminal
+
+---
+
+## 👨‍💻 Desenvolvimento
+
+Para contribuir com o projeto:
+
+1. Faça um fork do repositório
+2. Crie uma branch para sua feature
+3. Commit suas mudanças
+4. Push para a branch
+5. Abra um Pull Request
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença **MIT**. Veja o arquivo `LICENSE` para mais detalhes.
